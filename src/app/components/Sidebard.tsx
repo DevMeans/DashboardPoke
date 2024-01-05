@@ -3,6 +3,7 @@ import React from 'react'
 import { FaReact } from "react-icons/fa";
 import { IoBrowsersOutline, IoCalculator, IoFastFood } from 'react-icons/io5'
 import { SidebarMenuItem } from './SidebarMenuItem';
+
 const menuItems = [
     {
         path: '/dashboard/main',
@@ -27,7 +28,7 @@ const menuItems = [
 
 export const Sidebard = () => {
     return (
-        <div id="menu" className="bg-gray-900 min-h-screen z-10 text-slate-300 w-64  left-0 h-screen overflow-y-scroll">
+        <div id="menu" className="bg-gray-900 min-h-screen z-10 text-slate-300 w-64  left-0 h-full overflow-y-scroll">
             <div id="logo" className="my-4 px-6">
                 <h1 className="text-lg md:text-2xl font-bold text-white inline-flex gap-1"><FaReact /> Dash<span className="text-blue-500">9</span></h1>
                 <p className="text-slate-500 text-sm">Manage your actions and activities</p>
