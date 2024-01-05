@@ -1,5 +1,5 @@
 
-import { CardCounter } from "@/app/shoping-cart";
+import { CardCounter } from "@/shoping-cart";
 import { Metadata } from "next";
 
 
