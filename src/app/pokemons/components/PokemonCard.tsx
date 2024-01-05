@@ -26,7 +26,7 @@ export const PokemonCard = ({ pokemon }: props) => {
                     <p className="pt-2 text-lg font-semibold text-gray-50 capitalize">{name}</p>
 
                     <div className="mt-5">
-                        <Link href={`/dashboard/pokemon/${name}`} prefetch={true}
+                        <Link href={`/dashboard/pokemons/${name}`} prefetch={true}
                             className="border rounded-full py-2 px-4 text-xs font-semibold text-gray-100"
                         >
                             Mas informacion

@@ -3,9 +3,13 @@ import { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 
+
+
+
 interface props {
     params: { name: string }
 }
+
 
 export async function generateStaticParams() {
     const data: PokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=151`).then(
@@ -24,8 +28,8 @@ export async function generateMetadata({ params }: props): Promise<Metadata> {
     try {
         const { id, name } = await getPokemon(params.name)
         return {
-            title: `#${id}- ${name}`,
-            description: `Pagina del pokemon ${name}`
+            title: `#${id}- ${name} (151)`,
+            description: `Pagina del pokemon 151 ${name}`
         }
     } catch (error) {
         return {
