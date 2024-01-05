@@ -1,15 +1,20 @@
-import { Pokemon } from "@/app/pokemons"
+import { Pokemon, PokemonResponse } from "@/app/pokemons"
 import { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 
 interface props {
-    params: { id: string }
+    params: { name: string }
 }
 
 export async function generateStaticParams() {
-    const static151Pokemos=Array.from({length:151}).map((v,i)=>`${i+1}`)
-    return static151Pokemos.map(id=>({id:id}))
+    const data: PokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=151`).then(
+        res => res.json()
+    )
+    const static151pokemons = data.results.map(pokemon => ({
+        name: pokemon.name
+    }))
+    return static151pokemons.map(({ name }) => ({ name: name }))
 }
 
 
@@ -17,7 +22,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: props): Promise<Metadata> {
 
     try {
-        const { id, name } = await getPokemon(params.id)
+        const { id, name } = await getPokemon(params.name)
         return {
             title: `#${id}- ${name}`,
             description: `Pagina del pokemon ${name}`
@@ -31,9 +36,9 @@ export async function generateMetadata({ params }: props): Promise<Metadata> {
 
 
 }
-const getPokemon = async (id: string): Promise<Pokemon> => {
+const getPokemon = async (name: string): Promise<Pokemon> => {
     try {
-        const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
+        const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`, {
             //cache: 'force-cache', //TODO: por manipular,
             next: {
                 revalidate: 60 * 60 * 30 * 6
@@ -50,7 +55,7 @@ const getPokemon = async (id: string): Promise<Pokemon> => {
 
 export default async function PokemonPage({ params }: props) {
 
-    const pokemon = await getPokemon(params.id)
+    const pokemon = await getPokemon(params.name)
     return (
         <div className="flex mt-5 flex-col items-center text-slate-800">
             <div className="relative flex flex-col items-center rounded-[20px] w-[700px] mx-auto bg-white bg-clip-border  shadow-lg  p-3">
