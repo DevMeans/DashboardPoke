@@ -5,16 +5,34 @@ import { useDispatch } from 'react-redux'
 import { addOne, initCounterState, resetCount, sustractOne } from '@/store/counter/counterSlice'
 interface props {
     value?: number,
-   
+
 }
 
+export interface CounterResponse {
+    method: string,
+    count: number
+}
+
+const getApiCounter = async (): Promise<CounterResponse> => {
+    const data = await fetch('/api/counter').then(
+        resp => resp.json()
+    )
+    return data
+}
 export const CardCounter = ({ value = 10 }: props) => {
     //   const [counter, setCounter] = useState(value)
     const count = useAppSelector(state => state.counter.count)
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        getApiCounter().then(
+            ({ count }) => dispatch(initCounterState(count))
+        )
 
-    
+
+    }, [dispatch])
+
+
     return (
         <>
             <span className="text-9xl">{count}</span>
