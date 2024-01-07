@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { FaReact } from "react-icons/fa";
-import { IoBrowsersOutline, IoCalculator, IoFastFood } from 'react-icons/io5'
+import { IoBrowsersOutline, IoCalculator, IoFastFood, IoHeartHalfOutline } from 'react-icons/io5'
 import { SidebarMenuItem } from './SidebarMenuItem';
 
 const menuItems = [
@@ -22,6 +22,11 @@ const menuItems = [
         icon: <IoFastFood size={30} />,
         title: 'Pokemons',
         subTitle: 'Generacion statica'
+    },{
+        path: '/dashboard/favoritos',
+        icon: <IoHeartHalfOutline size={30} />,
+        title: 'Favoritos',
+        subTitle: 'Pokemons Favoritos'
     }
 
 ]
