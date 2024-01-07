@@ -1,20 +1,24 @@
 'use client'
 import React, { useState } from 'react'
-
+import { useAppSelector } from '@/store'
+import { useDispatch } from 'react-redux'
+import { addOne, sustractOne } from '@/store/counter/counterSlice'
 interface props {
-    value?:number
+    value?: number
 }
 
-export const CardCounter = ({value=10}:props) => {
-    const [counter, setCounter] = useState(value)
+export const CardCounter = ({ value = 10 }: props) => {
+    //   const [counter, setCounter] = useState(value)
+    const count = useAppSelector(state => state.counter.count)
+    const dispatch = useDispatch()
     return (
         <>
-            <span className="text-9xl">{counter}</span>
+            <span className="text-9xl">{count}</span>
             <div className="flex flex-row gap-2">
-                <button onClick={() => setCounter(counter + 1)} className="p-2 bg-cyan-800 text-white rounded-md text-5xl hover:bg-cyan-700 transition-all">
+                <button onClick={() => dispatch(addOne())} className="p-2 bg-cyan-800 text-white rounded-md text-5xl hover:bg-cyan-700 transition-all">
                     +1
                 </button>
-                <button onClick={() => setCounter(counter - 1)} className="p-2 bg-cyan-800 text-white rounded-md text-5xl hover:bg-cyan-700 transition-all">
+                <button onClick={() => dispatch(sustractOne())} className="p-2 bg-cyan-800 text-white rounded-md text-5xl hover:bg-cyan-700 transition-all">
                     -1
                 </button>
             </div>
