@@ -1,2 +1,2 @@
-export { Sidebard } from './Sidebard'
-export { SimpleWidget } from './SimpleWidget'
+export { Sidebard } from './sidebar/Sidebard'
+export { SimpleWidget } from './dashboard/SimpleWidget'

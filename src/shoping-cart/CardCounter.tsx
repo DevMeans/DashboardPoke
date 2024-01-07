@@ -1,16 +1,24 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppSelector } from '@/store'
 import { useDispatch } from 'react-redux'
-import { addOne, sustractOne } from '@/store/counter/counterSlice'
+import { addOne, initCounterState, resetCount, sustractOne } from '@/store/counter/counterSlice'
 interface props {
-    value?: number
+    value?: number,
+   
 }
 
 export const CardCounter = ({ value = 10 }: props) => {
     //   const [counter, setCounter] = useState(value)
     const count = useAppSelector(state => state.counter.count)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+      dispatch(initCounterState(value))
+    
+    
+    }, [dispatch,value])
+    
     return (
         <>
             <span className="text-9xl">{count}</span>
