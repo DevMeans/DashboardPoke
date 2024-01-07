@@ -13,11 +13,7 @@ export const CardCounter = ({ value = 10 }: props) => {
     const count = useAppSelector(state => state.counter.count)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-      dispatch(initCounterState(value))
-    
-    
-    }, [dispatch,value])
+
     
     return (
         <>

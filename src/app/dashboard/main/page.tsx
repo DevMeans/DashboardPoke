@@ -1,4 +1,4 @@
-import { WidgetsGrid } from "@/components/dashboard/widgetsGrid";
+import { WidgetsGrid } from "@/components/dashboard/WidgetsGrid";
 
 export const metadata = {
  title: 'Dashboard Seo',
