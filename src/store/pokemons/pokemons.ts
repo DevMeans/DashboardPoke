@@ -7,7 +7,8 @@ interface PokemonState{
 } 
 
 const initialState:PokemonState = {
-    '1':{id:'1',name:'bulbasaur'}
+    '1':{id:'1',name:'bulbasaur'},
+    '2':{id:'2',name:'bulbasaur'}
 }
 
 const pokemonsSlice = createSlice({
