@@ -4,7 +4,8 @@ import React from 'react'
 import { simplePokemon } from '..'
 import Image from 'next/image'
 import { IoHeart, IoHeartOutline } from 'react-icons/io5'
-import { useAppSelector } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
+import { toggleFavorites } from '@/store/pokemons/pokemons'
 
 interface props {
     pokemon: simplePokemon
@@ -12,7 +13,10 @@ interface props {
 export const PokemonCard = ({ pokemon }: props) => {
     const { id, name } = pokemon
     const  isfavorite = useAppSelector(state =>!!state.pokemons[id]);
-    
+    const dispatch =useAppDispatch()
+    const onToogle =()=>{
+        dispatch(toggleFavorites(pokemon))
+    }
     return (
         <div className="mx-auto right-0 mt-2 w-60">
             <div className="bg-white rounded overflow-hidden shadow-lg">
@@ -38,7 +42,9 @@ export const PokemonCard = ({ pokemon }: props) => {
                     </div>
                 </div>
                 <div className="border-b">
-                    <Link href="/account/campaigns" className="px-4 py-2 hover:bg-gray-100 flex items-center">
+                    <div
+                    onClick={onToogle}
+                    className="px-4 py-2 hover:bg-gray-100 flex items-center cursor-pointer">
 
                         <div className="text-red-600">
                             { isfavorite ? <IoHeart /> :<IoHeartOutline /> }
@@ -50,7 +56,7 @@ export const PokemonCard = ({ pokemon }: props) => {
                             <p className="text-xs text-gray-500">View your campaigns</p>
                         </div>
 
-                    </Link>
+                    </div>
                 </div>
 
             </div>

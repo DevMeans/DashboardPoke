@@ -1,8 +1,9 @@
-import { PokemonGrid, PokemonResponse, simplePokemon } from "@/app/pokemons";
+import { PokemonGrid } from "@/app/pokemons";
 
 
 
 export default async function PokemonsFavoritesPage() {
+    
     
     return (
         <div className="flex flex-col">
